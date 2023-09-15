@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\V1\Files\Services\Uploaders\Local;
+namespace Modules\V1\Files\Services\Drivers\Local;
 
 use Illuminate\Support\Facades\Storage;
 use Modules\V1\Files\Enums\FoldersEnum;
-use Modules\V1\Files\Services\Upload;
+use Modules\V1\Files\Services\Contracts\UploadInterface;
 
-class UploadToLocal extends Upload
+class UploadToLocal implements UploadInterface
 {
     /**
      * @param $file

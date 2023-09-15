@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\V1\Files\Services\Uploaders\Minio;
+namespace Modules\V1\Files\Services\Drivers\Minio;
 
-use Modules\V1\Files\Services\Upload;
+use Modules\V1\Files\Services\Contracts\UploadInterface;
 
-class UploadToMinio extends Upload
+class UploadToMinio implements UploadInterface
 {
     /**
      * @param $file

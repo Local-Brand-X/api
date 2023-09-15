@@ -115,4 +115,22 @@ abstract class Action
     {
         return $this->validationErrors;
     }
+
+    /**
+     * @param string     $message
+     * @param StatusCode $statusCode
+     *
+     * @return JsonResponse
+     */
+    protected function clientErrorResponse(
+        string $message,
+        StatusCode $statusCode = StatusCode::BAD_REQUEST
+    ): JsonResponse {
+        return new JsonResponse(
+            [
+                'message' => $message,
+            ],
+            $statusCode->value
+        );
+    }
 }

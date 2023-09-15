@@ -7,6 +7,7 @@ use App\Http\Responses\StatusCode;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Modules\V1\Files\Resources\FileResource;
 use Modules\V1\Files\Controllers\Helpers\FileInfoGetter;
 use Modules\V1\Files\Exceptions\FileUploadException;
 use Modules\V1\Files\Models\File;
@@ -42,11 +43,7 @@ class UploadFile extends Action
 
             return $this->dataResponse([
                 'message' => __('files.file_uploaded'),
-                'data' => [
-                    'id' => $file->id,
-                    'filename' => $file->filename,
-                    'url' => $file->url,
-                ],
+                'data' => new FileResource($file),
             ]);
         } catch (FileUploadException $ex) {
             Log::error('Cannot upload file :'.$ex->getMessage());

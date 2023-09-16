@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\V1\Files\Services\Contracts\UploadInterface;
+use Modules\V1\Files\Services\Drivers\Local\UploadToLocal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(UploadInterface::class, static function () {
+            return new UploadToLocal();
+        });
     }
 
     /**
@@ -19,6 +23,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
     }
 }

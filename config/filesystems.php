@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -29,7 +28,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -55,7 +53,13 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-
+        'minio' => [
+            'key' => env('MINIO_ACCESS_KEY_ID'),
+            'secret' => env('MINIO_SECRET_ACCESS_KEY'),
+            'region' => env('MINIO_DEFAULT_REGION'),
+            'bucket' => env('MINIO_BUCKET'),
+            'endpoint' => env('MINIO_ENDPOINT'),
+        ],
     ],
 
     /*
@@ -72,5 +76,4 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 ];

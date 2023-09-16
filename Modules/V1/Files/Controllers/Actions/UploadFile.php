@@ -11,7 +11,7 @@ use Modules\V1\Files\Controllers\Helpers\FileInfoGetter;
 use Modules\V1\Files\Events\FileUploaded;
 use Modules\V1\Files\Exceptions\FileUploadException;
 use Modules\V1\Files\Models\File;
-use Modules\V1\Files\Resources\FileResource;
+use Modules\V1\Files\Resources\Api\FileResource;
 use Modules\V1\Files\Services\Contracts\UploadInterface;
 
 class UploadFile extends Action

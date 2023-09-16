@@ -1,0 +1,396 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "LocalBrandX-API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://0.0.0.0"
+        }
+    ],
+    "paths": {
+        "/api/v1/employee": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get a list of employees",
+                "operationId": "d35437d83fc1546e34a6d4224f6cd31e",
+                "parameters": [
+                    {
+                        "name": "paginated",
+                        "in": "query",
+                        "description": "Pagination indicator (1 for paginated results, 0 for all results)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "enum": [
+                                0,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of items per page (applicable when 'paginated' is 1)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of employees retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "0001a9bd-9064-4ad9-9e7b-651e253d1e19"
+                                                    },
+                                                    "employee_id": {
+                                                        "type": "integer",
+                                                        "example": 940994
+                                                    },
+                                                    "user_name": {
+                                                        "type": "string",
+                                                        "example": "rogravely"
+                                                    },
+                                                    "name_prefix": {
+                                                        "type": "string",
+                                                        "example": "Dr."
+                                                    },
+                                                    "first_name": {
+                                                        "type": "string",
+                                                        "example": "Rodger"
+                                                    },
+                                                    "middle_initial": {
+                                                        "type": "string",
+                                                        "example": "O"
+                                                    },
+                                                    "last_name": {
+                                                        "type": "string",
+                                                        "example": "Gravely"
+                                                    },
+                                                    "gender": {
+                                                        "type": "string",
+                                                        "example": "M"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "rodger.gravely@hotmail.com"
+                                                    },
+                                                    "date_of_birth": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "1993-09-17"
+                                                    },
+                                                    "time_of_birth": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "example": "04:26:26 AM"
+                                                    },
+                                                    "age_in_yrs": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 23.88
+                                                    },
+                                                    "date_of_joining": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2014-11-05"
+                                                    },
+                                                    "age_in_company": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 2.73
+                                                    },
+                                                    "phone_number": {
+                                                        "type": "string",
+                                                        "example": "231-704-4289"
+                                                    },
+                                                    "place_name": {
+                                                        "type": "string",
+                                                        "example": "Dimondale"
+                                                    },
+                                                    "country": {
+                                                        "type": "string",
+                                                        "example": "Eaton"
+                                                    },
+                                                    "city": {
+                                                        "type": "string",
+                                                        "example": "Dimondale"
+                                                    },
+                                                    "zip": {
+                                                        "type": "integer",
+                                                        "example": 48821
+                                                    },
+                                                    "region": {
+                                                        "type": "string",
+                                                        "example": "Midwest"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No employees found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Upload Employee File",
+                "description": "Upload Employee File.",
+                "operationId": "1f547acfec13063db0980a5536540fa0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "Employee Csv File.",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "File uploaded successfully and will be imported soon.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "File uploaded successfully and will be imported soon."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "68fbdc1f-db93-4e6a-9e2d-a56b2be6d766"
+                                                },
+                                                "filename": {
+                                                    "type": "string",
+                                                    "example": "mcsDfAN0X57S9cbZ7UUDnN4HFcWfRZNf386SqdPP.csv"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "file": {
+                                                    "type": "string",
+                                                    "example": "The file field is required."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/employee/{employee_id}": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get a single employee by ID",
+                "operationId": "dc0323fa3f2f8f58cebbf67eb3bc06cc",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "ID of the employee to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Employee details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "68fbdc1f-db93-4e6a-9e2d-a56b2be6d766"
+                                        },
+                                        "employee_id": {
+                                            "type": "integer",
+                                            "example": 12345
+                                        },
+                                        "user_name": {
+                                            "type": "string",
+                                            "example": "rogravely"
+                                        },
+                                        "name_prefix": {
+                                            "type": "string",
+                                            "example": "Dr."
+                                        },
+                                        "first_name": {
+                                            "type": "string",
+                                            "example": "Rodger"
+                                        },
+                                        "middle_initial": {
+                                            "type": "string",
+                                            "example": "O"
+                                        },
+                                        "last_name": {
+                                            "type": "string",
+                                            "example": "Gravely"
+                                        },
+                                        "gender": {
+                                            "type": "string",
+                                            "example": "M"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "rodger.gravely@hotmail.com"
+                                        },
+                                        "date_of_birth": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "1993-09-17"
+                                        },
+                                        "time_of_birth": {
+                                            "type": "string",
+                                            "format": "time",
+                                            "example": "04:26:26 AM"
+                                        },
+                                        "age_in_yrs": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 23.88
+                                        },
+                                        "date_of_joining": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2014-11-05"
+                                        },
+                                        "age_in_company": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 2.73
+                                        },
+                                        "phone_number": {
+                                            "type": "string",
+                                            "example": "231-704-4289"
+                                        },
+                                        "place_name": {
+                                            "type": "string",
+                                            "example": "Dimondale"
+                                        },
+                                        "country": {
+                                            "type": "string",
+                                            "example": "Eaton"
+                                        },
+                                        "city": {
+                                            "type": "string",
+                                            "example": "Dimondale"
+                                        },
+                                        "zip": {
+                                            "type": "integer",
+                                            "example": 48821
+                                        },
+                                        "region": {
+                                            "type": "string",
+                                            "example": "Midwest"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Employee not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Delete an employee by ID",
+                "operationId": "b6192d25f1b2caa83f0810fc024de2d6",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "ID of the employee to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Employee deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee deleted successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Employee not found"
+                    }
+                }
+            }
+        }
+    }
+}

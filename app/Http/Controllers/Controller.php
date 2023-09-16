@@ -9,6 +9,12 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 
+/**
+ * @OA\Info(
+ *    title="LocalBrandX-API",
+ *    version="1.0.0",
+ * )
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests;

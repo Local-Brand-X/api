@@ -2,6 +2,7 @@
 
 up-and-running:
 	@echo "Setting up Local BrandX Employee API V1..."
+	@cp .env.example .env
 	@composer install
 	@./vendor/bin/sail up -d
 	@./vendor/bin/sail php artisan key:generate

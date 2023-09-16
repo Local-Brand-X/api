@@ -11,10 +11,6 @@
 Please make sure you have docker in your system.
 
 ```sh
-$ cp .env.example .env
-```
-
-```sh
 $ composer install
 ```
 
@@ -51,12 +47,39 @@ Run Test:
 ```sh
 $ ./vendor/bin/sail php artisan test
 ```
+
+To simplify these steps, you can also use the provided Makefile:
+
+1- Sets up the project with all necessary configurations.
+```sh 
+$ make up-and-running
+```
+
+2- Generates API documentation.
+```sh 
+$ make generate-api-docs
+```
+
+3- Runs phpstan and phpcs for code analysis.
+```sh 
+$ make run-phpstan-phpcs
+```
+
+4- Runs tests.
+```sh 
+$ make run-tests
+```
+
+5- Stops the project and cleans up.
+```sh 
+$ make clean
+```
 ---
 
 Links:
 
 - Api Documentation: http://localhost/api/documentation
-- Public Github Repo: https://github.com/Local-Brand-X/api
+- Public GitHub Repo: https://github.com/Local-Brand-X/api
 
 ### Routes
 available Routes:

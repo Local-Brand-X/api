@@ -7,10 +7,11 @@ use App\Http\Responses\StatusCode;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Modules\V1\Files\Resources\FileResource;
 use Modules\V1\Files\Controllers\Helpers\FileInfoGetter;
+use Modules\V1\Files\Events\FileUploaded;
 use Modules\V1\Files\Exceptions\FileUploadException;
 use Modules\V1\Files\Models\File;
+use Modules\V1\Files\Resources\FileResource;
 use Modules\V1\Files\Services\Contracts\UploadInterface;
 
 class UploadFile extends Action
@@ -40,6 +41,8 @@ class UploadFile extends Action
                 'path' => $filePath,
                 'size' => $fileInfo['size'],
             ]);
+
+            event(new FileUploaded($file));
 
             return $this->dataResponse([
                 'message' => __('files.file_uploaded'),

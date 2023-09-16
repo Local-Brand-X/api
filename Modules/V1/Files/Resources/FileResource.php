@@ -3,8 +3,8 @@
 namespace Modules\V1\Files\Resources;
 
 use Illuminate\Http\Request;
-use Modules\V1\Files\Models\File;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\V1\Files\Models\File;
 
 /**
  * @mixin File

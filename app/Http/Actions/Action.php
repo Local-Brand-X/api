@@ -2,9 +2,12 @@
 
 namespace App\Http\Actions;
 
+use App\Http\Responses\PaginationResponse;
 use App\Http\Responses\StatusCode;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Validator as ValidatorObject;
 
@@ -122,6 +125,22 @@ abstract class Action
      *
      * @return JsonResponse
      */
+    protected function messageResponse(string $message, StatusCode $statusCode = StatusCode::OK): JsonResponse
+    {
+        return new JsonResponse(
+            [
+                'message' => $message,
+            ],
+            $statusCode->value
+        );
+    }
+
+    /**
+     * @param string     $message
+     * @param StatusCode $statusCode
+     *
+     * @return JsonResponse
+     */
     protected function clientErrorResponse(
         string $message,
         StatusCode $statusCode = StatusCode::BAD_REQUEST
@@ -131,6 +150,71 @@ abstract class Action
                 'message' => $message,
             ],
             $statusCode->value
+        );
+    }
+
+    /**
+     * @param JsonResource          $resource
+     * @param ?string               $message
+     * @param ?array<string, mixed> $meta
+     * @param StatusCode            $statusCode
+     *
+     * @return JsonResponse
+     */
+    protected function resourceResponse(
+        JsonResource $resource,
+        string $message = null,
+        ?array $meta = [],
+        StatusCode $statusCode = StatusCode::OK
+    ): JsonResponse {
+        return new JsonResponse(
+            array_filter([
+                'message' => $message,
+                'data' => $resource,
+                'meta' => array_filter((array) $meta),
+            ]),
+            $statusCode->value
+        );
+    }
+
+    /**
+     * @param AnonymousResourceCollection $collection
+     * @param ?array<string, mixed>       $meta
+     * @param StatusCode                  $statusCode
+     * @param bool                        $paginated
+     * @param ?int                        $page
+     * @param ?int                        $perPage
+     *
+     * @return JsonResponse
+     */
+    protected function resourceCollectionResponse(
+        AnonymousResourceCollection $collection,
+        ?array $meta = [],
+        StatusCode $statusCode = StatusCode::OK,
+        bool $paginated = false,
+        int $page = null,
+        int $perPage = null,
+    ): JsonResponse {
+        $page = $page ?? $this->request->input('page', 1);
+        $perPage = $perPage ?? $this->request->input('per_page', 15);
+
+        if ($paginated || $this->request->input('paginated', false)) {
+            return (new PaginationResponse(
+                $collection->collection->forPage($page, $perPage),
+                $collection->count(),
+                $perPage,
+                $page,
+                (array) $meta,
+                $statusCode
+            ))->toJsonResponse();
+        }
+
+        return new JsonResponse(
+            array_filter([
+                'data' => $collection,
+                'meta' => array_filter((array) $meta),
+            ]),
+            $statusCode->value,
         );
     }
 }

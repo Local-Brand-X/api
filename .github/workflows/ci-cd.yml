@@ -1,0 +1,42 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: intl, pdo, zip, exif, pcntl, gd, opcache, redis
+
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --no-interaction
+
+      - name: Composer Analyzer
+        run: composer analyze
+
+      - name: Set up Sail
+        run: php vendor/bin/sail up -d
+
+      - name: Run Database Migrations
+        run: php vendor/bin/sail artisan migrate
+
+      - name: Run Tests
+        run: php vendor/bin/sail test
+
+      - name: Tear Down Sail
+        run: php vendor/bin/sail down
+
+      - name: Generate Swagger
+        run: php artisan l5-swagger:generate

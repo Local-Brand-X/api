@@ -20,37 +20,46 @@ class EmployeesController extends Controller
      *     path="/api/v1/employee",
      *     summary="Get a list of employees",
      *     tags={"Employees"},
+     *
      *     @OA\Parameter(
      *         name="paginated",
      *         in="query",
      *         description="Pagination indicator (1 for paginated results, 0 for all results)",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="integer",
      *             enum={0, 1},
      *             default=1
      *         )
      *     ),
+     *
      *     @OA\Parameter(
      *         name="per_page",
      *         in="query",
      *         description="Number of items per page (applicable when 'paginated' is 1)",
      *         required=false,
+     *
      *         @OA\Schema(
      *             type="integer",
      *             default=15
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="List of employees retrieved successfully",
+     *
      *         @OA\JsonContent(
      *             type="object",
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
+     *
      *                 @OA\Items(
      *                     type="object",
+     *
      *                     @OA\Property(property="id", type="string", example="0001a9bd-9064-4ad9-9e7b-651e253d1e19"),
      *                     @OA\Property(property="employee_id", type="integer", example=940994),
      *                     @OA\Property(property="user_name", type="string", example="rogravely"),
@@ -75,6 +84,7 @@ class EmployeesController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=404,
      *         description="No employees found"
@@ -90,24 +100,30 @@ class EmployeesController extends Controller
      * @param GetSingleEmployeeAction $action
      *
      * @return JsonResponse
+     *
      * @OA\Get(
      *     path="/api/v1/employee/{employee_id}",
      *     summary="Get a single employee by ID",
      *     tags={"Employees"},
+     *
      *     @OA\Parameter(
      *         name="employee_id",
      *         in="path",
      *         description="ID of the employee to retrieve",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="integer"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Employee details retrieved successfully",
+     *
      *         @OA\JsonContent(
      *             type="object",
+     *
      *             @OA\Property(
      *                 property="id",
      *                 type="string",
@@ -215,6 +231,7 @@ class EmployeesController extends Controller
      *             ),
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=404,
      *         description="Employee not found"
@@ -236,12 +253,16 @@ class EmployeesController extends Controller
      *     summary="Upload Employee File",
      *     description="Upload Employee File.",
      *     tags={"Employees"},
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\MediaType(
      *             mediaType="multipart/form-data",
+     *
      *             @OA\Schema(
      *                 type="object",
+     *
      *                 @OA\Property(
      *                     property="file",
      *                     type="file",
@@ -250,10 +271,13 @@ class EmployeesController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="File uploaded successfully and will be imported soon.",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="message", type="string", example="File uploaded successfully and will be imported soon."),
      *             @OA\Property(property="data", type="object",
      *                 @OA\Property(property="id", type="string", example="68fbdc1f-db93-4e6a-9e2d-a56b2be6d766"),
@@ -261,10 +285,13 @@ class EmployeesController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=422,
      *         description="Invalid credentials",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="errors", type="object",
      *                 @OA\Property(property="file", type="string", example="The file field is required.")
      *             )
@@ -279,7 +306,6 @@ class EmployeesController extends Controller
 
     /**
      * @param DeleteAnEmployeeAction $action
-     * @param int $employee_id
      *
      * @return JsonResponse
      *
@@ -287,20 +313,25 @@ class EmployeesController extends Controller
      *     path="/api/v1/employee/{employee_id}",
      *     summary="Delete an employee by ID",
      *     tags={"Employees"},
+     *
      *     @OA\Parameter(
      *         name="employee_id",
      *         in="path",
      *         description="ID of the employee to delete",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="integer"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Employee deleted successfully",
+     *
      *         @OA\JsonContent(
      *             type="object",
+     *
      *             @OA\Property(
      *                 property="message",
      *                 type="string",
@@ -308,6 +339,7 @@ class EmployeesController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=404,
      *         description="Employee not found"

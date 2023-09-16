@@ -10,13 +10,13 @@
         }
     ],
     "paths": {
-        "/api/v1/employee": {
+        "/api/v1/employees": {
             "get": {
                 "tags": [
                     "Employees"
                 ],
                 "summary": "Get a list of employees",
-                "operationId": "d35437d83fc1546e34a6d4224f6cd31e",
+                "operationId": "eae98647c6935160aa0db2051e1065fd",
                 "parameters": [
                     {
                         "name": "paginated",
@@ -160,7 +160,7 @@
                 ],
                 "summary": "Upload Employee File",
                 "description": "Upload Employee File.",
-                "operationId": "1f547acfec13063db0980a5536540fa0",
+                "operationId": "dddc9125a2ffbf387eb6abe67fde3f29",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -231,13 +231,13 @@
                 }
             }
         },
-        "/api/v1/employee/{employee_id}": {
+        "/api/v1/employees/{employee_id}": {
             "get": {
                 "tags": [
                     "Employees"
                 ],
                 "summary": "Get a single employee by ID",
-                "operationId": "dc0323fa3f2f8f58cebbf67eb3bc06cc",
+                "operationId": "238e56a7620d947522ad024a809cbb63",
                 "parameters": [
                     {
                         "name": "employee_id",
@@ -357,7 +357,7 @@
                     "Employees"
                 ],
                 "summary": "Delete an employee by ID",
-                "operationId": "b6192d25f1b2caa83f0810fc024de2d6",
+                "operationId": "2ecfb0604210bfb1ed4ba9a9ad2426ad",
                 "parameters": [
                     {
                         "name": "employee_id",

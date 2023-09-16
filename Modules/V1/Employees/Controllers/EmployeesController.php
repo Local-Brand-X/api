@@ -17,7 +17,7 @@ class EmployeesController extends Controller
      * @return JsonResponse
      *
      * @OA\Get(
-     *     path="/api/v1/employee",
+     *     path="/api/v1/employees",
      *     summary="Get a list of employees",
      *     tags={"Employees"},
      *
@@ -102,7 +102,7 @@ class EmployeesController extends Controller
      * @return JsonResponse
      *
      * @OA\Get(
-     *     path="/api/v1/employee/{employee_id}",
+     *     path="/api/v1/employees/{employee_id}",
      *     summary="Get a single employee by ID",
      *     tags={"Employees"},
      *
@@ -249,7 +249,7 @@ class EmployeesController extends Controller
      * @return JsonResponse
      *
      * @OA\Post(
-     *     path="/api/v1/employee",
+     *     path="/api/v1/employees",
      *     summary="Upload Employee File",
      *     description="Upload Employee File.",
      *     tags={"Employees"},
@@ -310,7 +310,7 @@ class EmployeesController extends Controller
      * @return JsonResponse
      *
      * @OA\Delete(
-     *     path="/api/v1/employee/{employee_id}",
+     *     path="/api/v1/employees/{employee_id}",
      *     summary="Delete an employee by ID",
      *     tags={"Employees"},
      *

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'prefix' => 'employee',
+    'prefix' => 'employees',
     'namespace' => 'Employees\Controllers',
 ], static function () {
     Route::get('/', 'EmployeesController@index')->name('employees.index');

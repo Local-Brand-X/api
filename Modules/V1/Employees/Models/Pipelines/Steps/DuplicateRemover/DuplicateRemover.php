@@ -3,7 +3,7 @@
 namespace Modules\V1\Employees\Models\Pipelines\Steps\DuplicateRemover;
 
 use Illuminate\Support\Facades\Cache;
-use Modules\V1\Employees\Models\Contants\EmployeeCacheKeys;
+use Modules\V1\Employees\Models\Constants\EmployeeCacheKeys;
 use Modules\V1\Employees\Models\Employee;
 use Modules\V1\Employees\Models\Pipelines\Contracts\BasePipeline;
 use Modules\V1\Files\Models\Constants\FileCacheKeys;

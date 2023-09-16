@@ -24,7 +24,7 @@ jobs:
         run: composer install --no-progress --no-interaction
 
       - name: Composer Analyzer
-        run: composer analyze
+        run: composer analyse
 
       - name: Set up Sail
         run: php vendor/bin/sail up -d

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $filename
  * @property string $extension
  * @property string $mimetype
- * @property string $url
+ * @property string $path
  * @property int    $size
  * @property Carbon $created_at
  * @property Carbon $updated_at

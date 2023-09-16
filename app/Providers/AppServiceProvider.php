@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(UploadInterface::class, static function() {
+        $this->app->singleton(UploadInterface::class, static function () {
             return new UploadToLocal();
         });
     }
